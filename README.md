@@ -7,15 +7,15 @@ pip install -r requirements.txt
 \ntesteado con python3
 <br/>
 Uso:
-P: Resuelva la siguiente fraccion:  \t <->Preguntas
+P: Resuelva la siguiente fraccion:            <->Preguntas
 <br/>
-E: 1/(2/(3*x)) = y                  <->Ecuaciones
+E: 1/(2/(3*x)) = y                            <-> Ecuaciones
 <br/>
-R: 1/2                              <->Fracciones
+R: 1/2                                        <->Fracciones
 <br/>
 P: Hola
 <br/>
-R: Matriz 1,2,3;1,2,3;8,0,0;1,5,7   <->Matrices
+R: Matriz 1,2,3;1,2,3;8,0,0;1,5,7             <->Matrices
 <br/>
 P: DOJO
 <br/>
