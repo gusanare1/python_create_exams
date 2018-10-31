@@ -3,3 +3,4 @@ pytexit
 sympy 
 matplotlib
 python-docx
+matplotlib
