@@ -2,4 +2,4 @@
 pytexit 
 sympy 
 matplotlib
-docx
+python-docx
