@@ -1,10 +1,12 @@
+
+
 from pytexit import py2tex
 from sympy import *
 import sympy
 from sympy import sympify
 from sympy.solvers.solvers import solve_linear
 from sympy.parsing.sympy_parser import parse_expr
-
+import numpy as np
 import matplotlib.mathtext as mathtext
 import matplotlib.pyplot as plt
 import sympy
@@ -24,6 +26,22 @@ def my_parse(s, transfm=None):
         parse_expr(rhs, transformations=transfm))
 
 
+'''Conversion de arreglo bidimensional np to latex formato string'''
+def bmatrix(a):
+    """Returns a LaTeX bmatrix
+
+    :a: numpy array
+    :returns: LaTeX bmatrix as a string
+    """
+    if len(a.shape) > 2:
+        raise ValueError('bmatrix can at most display two dimensions')
+    lines = str(a).replace('[', '').replace(']', '').splitlines()
+    rv = [r'\begin{bmatrix}']
+    rv += ['  ' + ' & '.join(l.split()) + r'\\' for l in lines]
+    rv +=  [r'\end{bmatrix}']
+    return '\n'.join(rv)
+		
+		
 from collections import defaultdict		
 class GenerateSymbols(defaultdict):
     def __missing__(self, key):
@@ -40,25 +58,61 @@ def ecuacion_to_jpg(eq, name_file):
 	formula_as_file(sympy.latex( eq ), name_file+'.png')
 
 '''crear foto de la ecuacion'''	
-def crear_foto(eq,nombre,tam=120):
-	
+def crear_foto(eq,nombre,tam=120,esMatriz=False):
+	plt.clf() 
+	if esMatriz:
+		import pandas as pd
+		# Add a table at the bottom of the axes
+		fig, axs =plt.subplots()
+		
+		axs.xaxis.set_visible(False) 
+		axs.yaxis.set_visible(False)
+	 
+		df = pd.DataFrame(eq)
+		table = axs.table(cellText=df.values,loc='center',colWidths=[0.1] * eq.shape[1])
+		table.set_fontsize(20)
+		table.scale(1.5, 1.5)  # may help
+		
+		fig.tight_layout()
+		plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+		plt.savefig(nombre,bbox_inches='tight',pad_inches=-1) #or savefig  
+	else:
 		#add text                                                      
-		plt.clf()                 
+		                
 		plt.text(0, 0.5, r"$%s$" % eq, fontsize = tam)                                  
 
 		#hide axes                                                                      
 		fig = plt.gca()
 		fig.axes.get_xaxis().set_visible(False)
 		fig.axes.get_yaxis().set_visible(False)  
-		plt.savefig(nombre) #or savefig                                                          
+		
+		plt.savefig(nombre,bbox_inches='tight') #or savefig                                                          
 
 def ecuacion_to_latex(eq):
-	if '=' in eq:
+
+	if 'Matriz' in eq:
+		#Si es una matrix, devolvemos como  matiz numpy
+		a=eq.replace('Matriz','').replace(',',' ')
+		
+		matrix=np.matrix(a)
+		'''
+		#TO LATEX
+		from tabulate import tabulate
+		st_lat = tabulate(matrix, tablefmt="latex", floatfmt=".2f")
+		print(st_lat)
+		return st_lat
+		'''
+		
+		return matrix
+		
+		
+
+	elif '=' in eq:
 		
 		lf,rg = eq.split("=")
 		eq=sympy.Eq(sympify(lf,evaluate=False),sympify(rg))
-		
 	return sympy.latex(sympify(eq,evaluate=False))
+	
 
 import os, requests
  
@@ -76,14 +130,11 @@ def formula_as_file( formula, file):
 '''
 import matplotlib.pyplot as plt                                                 
 import sympy                                                                    
-
 x = sympy.symbols('x')
 #y = 1 + sympy.sin(sympy.sqrt(x**2 + 20))                                         
 lat = sympy.latex(fr)
-
 #add text                                                                       
 plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)                                  
-
 #hide axes                                                                      
 fig = plt.gca()                                                                 
 fig.axes.get_xaxis().set_visible(False)                                         
