@@ -1,0 +1,9 @@
+P: Resuelva la siguiente fraccion:
+E: 1/(2/(3*x)) = y
+R: 1/2
+P: Hola
+R: 1
+P: DOJO
+E: 1/2+x
+P: Quisiera una pizza con 
+E: 1/2*x+3*PI
