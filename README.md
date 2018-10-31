@@ -7,7 +7,7 @@ pip install -r requirements.txt
 \ntesteado con python3
 <br/>
 Uso:
-P: Resuelva la siguiente fraccion:            <->Preguntas
+P: Resuelva la siguiente fraccion: &nbsp&nbsp&nbsp&nbsp<->Preguntas
 <br/>
 E: 1/(2/(3*x)) = y                            <-> Ecuaciones
 <br/>
