@@ -3,6 +3,7 @@ from docx.shared import Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
 import sim
+import numpy as np
                                                  
 import time
 import leer_preguntas
@@ -100,6 +101,7 @@ for pregunta in preguntas:
 	sol = 97
 	if pregunta.respuestas:
 		for resp in pregunta.respuestas:
+		
 			res=sim.ecuacion_to_latex(resp)
 			p=document.add_paragraph(chr(sol)+") ")
 			
@@ -110,9 +112,13 @@ for pregunta in preguntas:
 			#print 12.0 + offset #fontsize + offset
 			p.add_run().add_picture("image.png")
 			'''
-			
-			sim.crear_foto(res,"resp.png",tam=180)
-			p.add_run().add_picture("resp.png",width=Inches(0.4))
+			if isinstance(res, (np.ndarray, np.generic) ):
+				sim.crear_foto(res,"respM.png",tam=120,esMatriz=True)
+				print("Matrix")
+				p.add_run().add_picture("respM.png",width=Inches(1))
+			else:
+				sim.crear_foto(res,"resp.png",tam=180)
+				p.add_run().add_picture("resp.png",width=Inches(0.4))
 		
 			
 			sol=sol+1
