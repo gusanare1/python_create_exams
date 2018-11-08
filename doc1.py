@@ -6,16 +6,15 @@ import sim
 import numpy as np
                                                  
 import time
-import leer_preguntas
-
+from leer_preguntas import crear_preguntas
 import qr
 
 from sim import ecuacion_to_jpg
 
 def crear_docx(numero=1):
-	print("Crear docx")
 	respuestas=""
-	preguntas = leer_preguntas.preguntas
+	
+	preguntas = crear_preguntas()
 	for pregunta in preguntas:
 		#print(pregunta.respuesta)
 		respuestas = respuestas+str(1+pregunta.respuestas.index(pregunta.respuesta))
