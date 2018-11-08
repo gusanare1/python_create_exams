@@ -8,6 +8,7 @@ Instalar dependencias:
 Testeado con python3.6
 <br/>
 Uso:
+<br/>
 P: Resuelva la siguiente fraccion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#09;&#09;<->Preguntas
 <br/>
 E: 1/(2/(3*x)) = y    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        <-> Ecuaciones
