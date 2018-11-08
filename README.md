@@ -26,3 +26,5 @@ P: Quisiera una pizza con
 E: 1/2*x+3*PI
 
 Genera una pagina docx con "el encabezado", las preguntas y sus literales (posibles respuestas) aleatorialente. Tambien genera un codigo qr (Respuestas en el orden que aparecen en el documento+1).
+<br/>
+<b>Necesita win32com en windows </b>
