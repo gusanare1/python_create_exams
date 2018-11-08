@@ -61,8 +61,8 @@ def crear_docx(numero=1):
 	#last_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 
 	p=document.add_paragraph()
-	table = document.add_table(rows=1, cols=5)
-	table.style = 'TableGrid'
+	table = document.add_table(rows=1, cols=5, style = 'Table Grid')
+	#table.style = 'TableGrid'
 	hdr_cells = table.rows[0].cells
 	hdr_cells[0].paragraphs[0].add_run().add_picture("qr.jpg",width=Inches(1.2))
 	hdr_cells[1].text = 'A'
