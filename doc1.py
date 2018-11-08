@@ -74,7 +74,6 @@ def crear_docx(numero=1):
 		row_cells = table.add_row().cells
 		row_cells[0].text=str(i)
 
-
 	last_paragraph = document.paragraphs[-1] 
 	last_paragraph.style.font.size=Pt(13)
 	last_paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -87,17 +86,19 @@ def crear_docx(numero=1):
 		p.add_run(pregunta.literal).bold=True
 		if pregunta.ecuacion:
 			preg=sim.ecuacion_to_latex(pregunta.ecuacion)
-			print("Preg::"+preg)
+			print(preg)
+			#print("Preg::"+preg)
 			#eq=ecuacion_to_jpg(pregunta.ecuacion, "eqx")
 			#document.add_picture("eqx.png",width=Inches(0.8))
 			
-			sim.crear_foto(preg,"preg.png")
-			p=document.add_paragraph()
-			p.add_run().add_picture("preg.png",width=Inches(1.2))
-			
-			last_paragraph = document.paragraphs[-1] 
-			last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-
+			if isinstance(preg, (np.ndarray, np.generic) ):
+				sim.crear_foto(preg,"preg.png",esMatriz=True)
+				p=document.add_paragraph()
+				p.add_run().add_picture("preg.png",width=Inches(1.2))
+				
+				last_paragraph = document.paragraphs[-1] 
+				last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+				
 			
 		sol = 97
 		if pregunta.respuestas:
@@ -106,21 +107,13 @@ def crear_docx(numero=1):
 				res=sim.ecuacion_to_latex(resp)
 				p=document.add_paragraph(chr(sol)+") ")
 				
-				'''
-				#EXPRESSION=r'$(\frac{5 - \frac{1}{x}}{4})$'
-				parser=mathtext.MathTextParser( 'bitmap' )
-				offset=parser.to_png("image.png", resp, fontsize=12)
-				#print 12.0 + offset #fontsize + offset
-				p.add_run().add_picture("image.png")
-				'''
 				if isinstance(res, (np.ndarray, np.generic) ):
 					sim.crear_foto(res,"respM.png",tam=120,esMatriz=True)
-					print("Matrix")
+					#print("Matrix")
 					p.add_run().add_picture("respM.png",width=Inches(1))
 				else:
 					sim.crear_foto(res,"resp.png",tam=180)
 					p.add_run().add_picture("resp.png",width=Inches(0.4))
-			
 				
 				sol=sol+1
 		if i%2==0:
@@ -134,9 +127,9 @@ def crear_docx(numero=1):
 		i=i+1	
 
 		
-		
-	document.save('exam'+str(numero)+'.docx')
-	print("Documento creado")
+	nombre_documento = 'exam'+str(numero)+'.docx'
+	document.save(nombre_documento)
+	print(nombre_documento+" creado")
 	import os
 	os.remove("qr.jpg")
 	os.remove("preg.png")
