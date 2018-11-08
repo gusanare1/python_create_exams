@@ -81,22 +81,32 @@ def crear_docx(numero=1):
 	from lxml import etree
 
 	i=2
+	tam=0.8
 	for pregunta in preguntas:
 		p = document.add_paragraph("", style='List Number')
 		p.add_run(pregunta.literal).bold=True
 		if pregunta.ecuacion:
+			
 			preg=sim.ecuacion_to_latex(pregunta.ecuacion)
+			
 			#print("Preg::"+preg)
 			#eq=ecuacion_to_jpg(pregunta.ecuacion, "eqx")
 			#document.add_picture("eqx.png",width=Inches(0.8))
 			
 			if isinstance(preg, (np.ndarray, np.generic) ):
 				sim.crear_foto(preg,"preg.png",esMatriz=True)
-				p=document.add_paragraph()
-				p.add_run().add_picture("preg.png",width=Inches(1.2))
-				
-				last_paragraph = document.paragraphs[-1] 
-				last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+				tam=1.4
+			else:#no es matriz... ecuacion imagino...
+				sim.crear_foto(preg,"preg.png")
+				if len(preg)>60:
+					tam=1.5
+				else:
+					tam=0.8
+			p=document.add_paragraph()
+			p.add_run().add_picture("preg.png",width=Inches(tam))
+			#print("Pr:"+preg+repr(tam))
+			last_paragraph = document.paragraphs[-1] 
+			last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
 				
 			
 		sol = 97
@@ -109,7 +119,7 @@ def crear_docx(numero=1):
 				if isinstance(res, (np.ndarray, np.generic) ):
 					sim.crear_foto(res,"respM.png",tam=120,esMatriz=True)
 					#print("Matrix")
-					p.add_run().add_picture("respM.png",width=Inches(1))
+					p.add_run().add_picture("respM.png",width=Inches(1.3))
 				else:
 					sim.crear_foto(res,"resp.png",tam=180)
 					p.add_run().add_picture("resp.png",width=Inches(0.4))
