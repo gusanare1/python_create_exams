@@ -1,5 +1,3 @@
-
-
 from pytexit import py2tex
 from sympy import *
 import sympy
