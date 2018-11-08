@@ -6,3 +6,4 @@ python-docx
 matplotlib
 qrcode
 array2latex
+pandas
