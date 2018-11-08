@@ -1,4 +1,6 @@
 # Para instalar la versión más reciente
+#https://sourceforge.net/projects/pywin32/
+#con win32com
 pytexit 
 sympy 
 matplotlib
