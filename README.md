@@ -2,6 +2,7 @@
 Funcion que crea un examen en word con un template(txt) usando matlabplot docx y sympy
 
 Instalar dependencias:
+<br/>
 pip install -r requirements.txt
 <br/>
 \ntesteado con python3
