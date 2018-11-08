@@ -39,7 +39,7 @@ class Quitter(Frame):                          # subclass our GUI
         Frame.quit(self)
 	
 root = Tk()
-root.title("Cuantos copias desea?")
+root.title("Cuantos examenes desea?")
 root.geometry("500x200")
 ent = Entry(root)
 ent.insert(0, '')                   # set text
