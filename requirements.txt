@@ -7,4 +7,3 @@ matplotlib
 qrcode
 array2latex
 pandas
-tkinter
