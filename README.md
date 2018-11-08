@@ -5,7 +5,7 @@ Instalar dependencias:
 <br/>
 <big><b><i>pip install -r requirements.txt</i></b></big>
 <br/>
-\ntesteado con python3
+Testeado con python3.6
 <br/>
 Uso:
 P: Resuelva la siguiente fraccion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#09;&#09;<->Preguntas
