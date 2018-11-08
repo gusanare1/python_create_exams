@@ -3,7 +3,7 @@ Funcion que crea un examen en word con un template(txt) usando matlabplot docx y
 
 Instalar dependencias:
 <br/>
-pip install -r requirements.txt
+<big><b><i><pip install -r requirements.txt</i></b></big>
 <br/>
 \ntesteado con python3
 <br/>
