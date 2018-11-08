@@ -86,7 +86,6 @@ def crear_docx(numero=1):
 		p.add_run(pregunta.literal).bold=True
 		if pregunta.ecuacion:
 			preg=sim.ecuacion_to_latex(pregunta.ecuacion)
-			print(preg)
 			#print("Preg::"+preg)
 			#eq=ecuacion_to_jpg(pregunta.ecuacion, "eqx")
 			#document.add_picture("eqx.png",width=Inches(0.8))
