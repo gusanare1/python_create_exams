@@ -51,7 +51,9 @@ def crear_preguntas():
 					fin = len(pr.respuesta)
 					i = random.randint(0,fin)			
 					if pr.respuesta[i].isdigit():
-						dig = int(pr.respuesta[i])+random.randint(2,30)
+						dig = int(pr.respuesta[i])+random.randint(1,9)
+						if 1==random.randint(0,1):
+							dig = -dig
 						resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i:]
 						#print("Resp. "+pr.respuesta+" Random:"+resp)
 						
