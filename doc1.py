@@ -140,7 +140,10 @@ def crear_docx(numero=1):
 	document.save(nombre_documento)
 	print(nombre_documento+" creado")
 	import os
-	os.remove("qr.jpg")
-	os.remove("preg.png")
-	os.remove("resp.png")
-	os.remove("respM.png")
+	try:
+		os.remove("qr.jpg")
+		os.remove("preg.png")
+		os.remove("resp.png")
+		os.remove("respM.png")
+	except:
+		pass
