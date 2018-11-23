@@ -11,3 +11,4 @@ qrcode
 array2latex
 pandas
 requests
+Image
