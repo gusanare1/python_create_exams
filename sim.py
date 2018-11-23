@@ -8,6 +8,8 @@ import numpy as np
 import matplotlib.mathtext as mathtext
 import matplotlib.pyplot as plt
 import sympy
+import latex
+
 
 from sympy.parsing.sympy_parser import (
     parse_expr, standard_transformations,
@@ -48,13 +50,17 @@ class GenerateSymbols(defaultdict):
 		
 def ecuacion_to_jpg(eq, name_file):
 	#eq = 'x+y=4'
-	if '=' in eq:
+	#eq='sin(x)+cos(x)+tan(x)^2'
+	try:
+		if '=' in eq:
+			lf,rg = eq.split("=")
+			eq=sympy.Eq(sympify(lf,evaluate=False),sympify(rg,evaluate=False))
+			
+		formula_as_file(sympy.latex( eq ), name_file+'.png')
+	
+	except:
+		formula_as_file(eq, name_file+'.png')
 		
-		lf,rg = eq.split("=")
-		eq=sympy.Eq(sympify(lf,evaluate=False),sympify(rg))
-		
-	formula_as_file(sympy.latex( eq ), name_file+'.png')
-
 '''crear foto de la ecuacion'''	
 def crear_foto(eq,nombre,tam=120,esMatriz=False):
 	plt.clf() 
@@ -93,6 +99,8 @@ def ecuacion_to_latex(eq):
 		a=eq.replace('Matriz','').replace(',',' ')
 		
 		matrix=np.matrix(a)
+		return sympy.latex(sympify(eq,evaluate=False))
+	
 		'''
 		#TO LATEX
 		from tabulate import tabulate
@@ -102,14 +110,9 @@ def ecuacion_to_latex(eq):
 		'''
 		
 		return matrix
-		
-		
-
-	elif '=' in eq:
-		
-		lf,rg = eq.split("=")
-		eq=sympy.Eq(sympify(lf,evaluate=False),sympify(rg))
-	return sympy.latex(sympify(eq,evaluate=False))
+	
+	else:
+		return eq
 	
 
 import os, requests
