@@ -32,9 +32,9 @@ def crear_preguntas():
 			pr.literal=lines.pop().replace("P:","").replace("\n","")
 			while not 'P:' in lines[len(lines)-1]:
 				if 'E:' in lines[len(lines)-1]:
-					pr.ecuacion = lines.pop().replace("E:","").replace("\n","").replace(" ","")
+					pr.ecuacion = lines.pop().replace("E:","").replace("\n","")
 				if 'R:' in lines[len(lines)-1]:
-					pr.respuesta = lines.pop().replace("R:","").replace("\n","").replace(" ","")
+					pr.respuesta = lines.pop().replace("R:","").replace("\n","")
 				
 			preguntas.append(pr)
 		except Exception as ex:
@@ -47,14 +47,22 @@ def crear_preguntas():
 		for i in range(0,3):#genero 3 respuestas (esocojo la respuesta y le sumo un aleatorio)
 			pa=False
 			while not pa:
+				indice_primer_numero=-1
+				esta_con_menos=False
+				for i in range(0,len(pr.respuesta)):
+					if pr.respuesta[i].isdigit():
+						indice_primer_numero=i
+						break
 				try:#Escojo hasta que agarre un numero...
 					fin = len(pr.respuesta)
 					i = random.randint(0,fin)			
 					if pr.respuesta[i].isdigit():
-						dig = int(pr.respuesta[i])+random.randint(1,9)
-						if 1==random.randint(0,1):
+						digito=pr.respuesta[i]
+						dig = int(digito)+random.randint(0,digito-1)
+						if 1==random.randint(0,1) and i==indice_primer_numero and esta_con_menos:
 							dig = -dig
-						resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i:]
+							esta_con_menos=True
+						resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+1:]
 						#print("Resp. "+pr.respuesta+" Random:"+resp)
 						
 						pr.respuestas.append(resp)
