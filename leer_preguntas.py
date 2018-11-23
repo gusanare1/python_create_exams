@@ -40,24 +40,26 @@ def crear_preguntas():
 		except Exception as ex:
 			preguntas.append(pr)
 			#print(ex)
-
+	tmp=0
 	for pr in preguntas:
 		pr.respuestas=[]	
 		pr.respuestas.append(pr.respuesta) #pongo la respuesta en cada pregunta
-		for i in range(0,3):#genero 3 respuestas (esocojo la respuesta y le sumo un aleatorio)
+		for j in range(0,3):#genero 3 respuestas (esocojo la respuesta y le sumo un aleatorio)
 			pa=False
 			while not pa:
 				indice_primer_numero=-1
 				esta_con_menos=False
-				for i in range(0,len(pr.respuesta)):
-					if pr.respuesta[i].isdigit():
-						indice_primer_numero=i
+				
+				for k in range(0,len(pr.respuesta)):
+					if pr.respuesta[k].isdigit():
+						indice_primer_numero=k
 						break
 				try:#Escojo hasta que agarre un numero...
+					
 					fin = len(pr.respuesta)
 					i = random.randint(0,fin)			
 					if pr.respuesta[i].isdigit():
-						digito=pr.respuesta[i]
+						digito=int(pr.respuesta[i])
 						dig = int(digito)+random.randint(0,digito-1)
 						if 1==random.randint(0,1) and i==indice_primer_numero and esta_con_menos:
 							dig = -dig
