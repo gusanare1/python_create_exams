@@ -44,35 +44,69 @@ def crear_preguntas():
 	for pr in preguntas:
 		pr.respuestas=[]	
 		pr.respuestas.append(pr.respuesta) #pongo la respuesta en cada pregunta
+		lista_num_aleat=[]
+		lista_num_aleat= list(range(1,9))
+		
+		
+		while len(pr.respuestas)!=4:
+			pr.respuestas=list(set(pr.respuestas))
+			flag = False
+			i=0
+			while not flag:
+				i= random.randint(1,len(pr.respuesta)-1)
+				if pr.respuesta[i].isdigit():
+					#print("DIG"+str( pr.respuesta[i]))
+					dg=random.randint(1,10-int(pr.respuesta[i]))
+					dig = int(pr.respuesta[i])+dg
+					flag=True
+			resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+random.randint(0,1):]
+			pr.respuestas.append(resp)
+		
+		'''
 		for j in range(0,3):#genero 3 respuestas (esocojo la respuesta y le sumo un aleatorio)
 			pa=False
-			while not pa:
-				indice_primer_numero=-1
-				esta_con_menos=False
-				
-				for k in range(0,len(pr.respuesta)):
+			
+			indice_primer_numero=-1
+			for k in range(0,len(pr.respuesta)):
 					if pr.respuesta[k].isdigit():
 						indice_primer_numero=k
 						break
+			while not pa:
+				
 				try:#Escojo hasta que agarre un numero...
 					
 					fin = len(pr.respuesta)
 					i = random.randint(0,fin)			
 					if pr.respuesta[i].isdigit():
 						digito=int(pr.respuesta[i])
-						dig = int(digito)+random.randint(1,digito-1)
-						if 1==random.randint(0,1) and i==indice_primer_numero and esta_con_menos:
-							dig = -dig
-							esta_con_menos=True
+						
+						
+						
+						sol = 10
+						while sol<9:
+							t=random.choice(lista_num_aleat)
+							lista_num_aleat.remove(t)
+							if sol+t<10:
+								sol=sol+t
+						
+						dig=sol
+						if 1==random.randint(0,1) and not i==indice_primer_numero:
+							if "+" in pr.respuesta[0:i]:
+								pr.respuesta[0:i].replace("+","-")
+						if 1==random.randint(0,1):
+							if "-" in pr.respuesta[i:]:
+								pr.respuesta[i:].replace("-","+")
 						resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+random.randint(0,1):]
 						#print("Resp. "+pr.respuesta+" Random:"+resp)
-						
+						print(" "+str(pr.respuesta))
 						pr.respuestas.append(resp)
 
-						pa = True
+						pa = True #Si llego hasta aqui he cambiado un numero
 				except Exception as ex:
 					#print("EOF"+str(ex))
 					pass
+		'''
 		random.shuffle(pr.respuestas)
+		
 	random.shuffle(preguntas)
 	return preguntas
