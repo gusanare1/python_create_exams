@@ -1,4 +1,3 @@
-from pytexit import py2tex
 from sympy import *
 import sympy
 from sympy import sympify
@@ -8,7 +7,6 @@ import numpy as np
 import matplotlib.mathtext as mathtext
 import matplotlib.pyplot as plt
 import sympy
-import latex
 
 
 from sympy.parsing.sympy_parser import (
