@@ -44,9 +44,8 @@ def crear_preguntas():
 	for pr in preguntas:
 		pr.respuestas=[]	
 		pr.respuestas.append(pr.respuesta) #pongo la respuesta en cada pregunta
-		lista_num_aleat=[]
-		lista_num_aleat= list(range(1,9))
-		
+		inicio = 1
+		delta = 3
 		
 		while len(pr.respuestas)!=4:
 			pr.respuestas=list(set(pr.respuestas))
@@ -56,9 +55,10 @@ def crear_preguntas():
 				i= random.randint(1,len(pr.respuesta)-1)
 				if pr.respuesta[i].isdigit():
 					#print("DIG"+str( pr.respuesta[i]))
-					dg=random.randint(1,10-int(pr.respuesta[i]))
+					dg=random.randint(inicio,inicio+delta)
 					dig = int(pr.respuesta[i])+dg
 					flag=True
+					inicio=inicio+delta+1
 			resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+random.randint(0,1):]
 			pr.respuestas.append(resp)
 		
