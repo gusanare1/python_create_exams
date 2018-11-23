@@ -170,10 +170,10 @@ def crear_docx(numero=1):
 					p.add_run().add_picture("resp.png",width=Inches(tam))
 				
 				sol=sol+1
-		#print("Pregunta: "+str(i))
-		if i%2==0 and i<numero_preguntas-1:
+		print("Pregunta: "+str(i))
+		if i%2==0 and i<numero_preguntas:
 			document.add_page_break()
-			#print("NEXT PAGE")
+			print("NEXT PAGE")
 		else:
 			if not i==numero_preguntas+1:
 				for j in range(0,4):
