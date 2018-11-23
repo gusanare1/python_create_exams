@@ -64,7 +64,7 @@ def crear_preguntas():
 						if 1==random.randint(0,1) and i==indice_primer_numero and esta_con_menos:
 							dig = -dig
 							esta_con_menos=True
-						resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+1:]
+						resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+random.randint(0,1):]
 						#print("Resp. "+pr.respuesta+" Random:"+resp)
 						
 						pr.respuestas.append(resp)
