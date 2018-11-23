@@ -60,7 +60,7 @@ def crear_preguntas():
 					i = random.randint(0,fin)			
 					if pr.respuesta[i].isdigit():
 						digito=int(pr.respuesta[i])
-						dig = int(digito)+random.randint(0,digito-1)
+						dig = int(digito)+random.randint(1,digito-1)
 						if 1==random.randint(0,1) and i==indice_primer_numero and esta_con_menos:
 							dig = -dig
 							esta_con_menos=True
