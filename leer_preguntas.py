@@ -1,10 +1,16 @@
 import random
 import sim
-
+import sympy
+import time
+import mpmath
+from mpmath import radians,degrees
 class Pregunta():
 	literal = ""
 	ecuacion = ""
 	respuesta = "0"
+	#----exec(string)
+	exe=""
+	dato=""#numero a cambiar
 	respuestas=[]
 	def __str__(self):
 		retorno = ""
@@ -15,8 +21,15 @@ class Pregunta():
 		if self.respuesta:
 			retorno = retorno+" *Respuesta: "+self.respuesta
 			retorno = retorno+str(self.respuestas)
+		if self.exe:
+			retorno=retorno+" *Exec:"+str(self.exe)
+		if self.dato:
+			retorno=retorno+" *Dato:"+str(self.dato)
+		
 		return retorno
 
+
+    
 def crear_preguntas():
 	preguntas = []	
 	with open('preguntas.txt') as f:
@@ -35,14 +48,30 @@ def crear_preguntas():
 					pr.ecuacion = lines.pop().replace("E:","").replace("\n","")
 				if 'R:' in lines[len(lines)-1]:
 					pr.respuesta = lines.pop().replace("R:","").replace("\n","")
-				
+				if 'DD:' in lines[len(lines)-1]:
+					pr.dato = lines.pop().replace("DD:","").replace("\n","")
+				if 'Z:' in lines[len(lines)-1]:
+					pr.exe = lines.pop().replace("Z:","").replace("\n","")
+			
+			pr.literal=pr.literal.replace("XX",pr.dato)
+			pr.exe=pr.exe.replace("XX",pr.dato)
 			preguntas.append(pr)
 		except Exception as ex:
 			preguntas.append(pr)
 			#print(ex)
-	tmp=0
+	
 	for pr in preguntas:
-		pr.respuestas=[]	
+		#print("Entramos a preguntas")
+		pr.respuestas=[]
+		if pr.exe:
+			al="tmp="+pr.exe+""
+			#print("*****"+al)
+			exec(al, globals())			
+			#print(tmp)
+			tmp2="%4.2f" % (tmp)
+			pr.respuesta=pr.respuesta.replace("YY",str(tmp2))
+			#print(pr.respuesta)
+		#print(pr)
 		pr.respuestas.append(pr.respuesta) #pongo la respuesta en cada pregunta
 		inicio = 1
 		delta = 3
