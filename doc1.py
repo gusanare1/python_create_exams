@@ -100,20 +100,22 @@ def crear_docx(numero=1):
 					tam=1.4
 				else:#no es matriz... ecuacion imagino...
 					sim.crear_foto(preg,"preg.png")
-					if len(preg)>70:
-						tam=3
+					if len(preg)>90:
+						tam=3.6
+					elif len(preg)>70:
+						tam=2.5
 						#print("1P")
 						#print(preg)
 					elif len(preg)>60:
 						#print("2")
 						#print(preg)
-						tam=2.2
+						tam=2.1
 					elif len(preg)>45:
-						tam=1.9
+						tam=1.8
 					elif len(preg)>30:
-						tam=1.6
+						tam=1.5
 					elif len(preg)>30:
-						tam=1.3
+						tam=1.25
 					else:
 						tam=0.9
 				p=document.add_paragraph()
@@ -129,36 +131,36 @@ def crear_docx(numero=1):
 			
 				res=sim.ecuacion_to_latex(resp)
 				p=document.add_paragraph(chr(sol)+") ")
-				if len(res)>100:
-						tam=2.7
+				if len(res)>110:
+						tam=2.25
 						#print("r1")
 						#print(res)
-				elif len(res)>90:
-						tam=2.3
+				elif len(res)>100:
+						tam=1.9
 						#print("r1")
 						#print(res)
 				elif len(res)>75:
 						#print("r2")
-						tam=2.0
+						tam=1.7
 						#print(res)
 				elif len(res)>60:
-						tam=1.7
+						tam=1.4
 						#print("r3")
 						#print(res)
 				elif len(res)>45:
-						tam=1.4
+						tam=1.15
 						#print("r4")
 						#print(res)
 				elif len(res)>30:
-						tam=1.1
+						tam=1
 						#print("r5")
 						#print(res)
 				elif len(res)>15:
-						tam=0.85
+						tam=0.8
 						#print("r6")
 						#print(res)
 				else :
-						tam=0.7
+						tam=0.65
 						#print("r7")
 						#print(res)
 				if isinstance(res, (np.ndarray, np.generic) ):
@@ -166,7 +168,7 @@ def crear_docx(numero=1):
 					#print("Matrix")
 					p.add_run().add_picture("respM.png",width=Inches(tam))
 				else:
-					sim.crear_foto(res,"resp.png",tam=130)
+					sim.crear_foto(res,"resp.png",tam=100)
 					p.add_run().add_picture("resp.png",width=Inches(tam))
 				
 				sol=sol+1
