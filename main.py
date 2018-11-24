@@ -6,16 +6,12 @@ import subprocess
 from win32com import client
 import time
 from tkinter import *
+import random
+import fileinput
+import sys
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-		
-def fetch():
-	numero=int(ent.get())+1
-	root.quit()
-	time.sleep(1)
-	#print('Input => "%s"' % ent.get())              # get text
-	
-	def printWordDocument(filename):
+def printWordDocument(filename):
 		word = client.Dispatch("Word.Application")
 		word.Documents.Open(filename)
 		word.ActiveDocument.PrintOut()
@@ -23,11 +19,24 @@ def fetch():
 		word.ActiveDocument.Close()
 		word.Quit()
 		
+def fetch():
+	numero=int(ent.get())+1
+	root.quit()
+	time.sleep(1)
+	#print('Input => "%s"' % ent.get())              # get text
+	
+		
 	for i in range(1,int(numero)):
 		doc1.crear_docx(i)
 		archivo = dir_path+"\\exam"+str(i)+".docx" 
 		print("*Imprimiendo "+archivo)
-		printWordDocument(archivo)
+		
+		for line in fileinput.input("preguntas.txt", inplace=1):
+			if "DD:" in line:
+				sE=line[:3]+str(int(line[3:])+random.randint(1,20))+"\n"
+				line = line.replace(line,sE)
+			sys.stdout.write(line)
+		#printWordDocument(archivo)
 		
 class Quitter(Frame):                          # subclass our GUI
     def __init__(self, parent=None):           # constructor method
