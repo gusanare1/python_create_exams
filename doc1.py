@@ -154,11 +154,11 @@ def crear_docx(numero=1):
 						#print("r5")
 						#print(res)
 				elif len(res)>15:
-						tam=0.8
+						tam=0.85
 						#print("r6")
 						#print(res)
 				else :
-						tam=0.55
+						tam=0.7
 						#print("r7")
 						#print(res)
 				if isinstance(res, (np.ndarray, np.generic) ):
@@ -173,7 +173,7 @@ def crear_docx(numero=1):
 		print("Pregunta: "+str(i))
 		if i%2==0 and i<numero_preguntas:
 			document.add_page_break()
-			print("NEXT PAGE")
+			#print("NEXT PAGE")
 		else:
 			if not i==numero_preguntas+1:
 				for j in range(0,4):
@@ -182,12 +182,18 @@ def crear_docx(numero=1):
 					run = p.add_run()
 					run.add_break()
 				#run.add_break()
+		
+		
+			
+		
 		i=i+1	
 
 		
 	nombre_documento = 'exam'+str(numero)+'.docx'
 	document.save(nombre_documento)
 	print(nombre_documento+" creado")
+	
+	
 	import os
 	try:
 		os.remove("qr.jpg")
@@ -196,3 +202,4 @@ def crear_docx(numero=1):
 		os.remove("respM.png")
 	except:
 		pass
+	
