@@ -36,7 +36,7 @@ def fetch():
 				sE=line[:3]+str(int(line[3:])+random.randint(1,20))+"\n"
 				line = line.replace(line,sE)
 			sys.stdout.write(line)
-		#printWordDocument(archivo)
+		printWordDocument(archivo)
 		
 class Quitter(Frame):                          # subclass our GUI
     def __init__(self, parent=None):           # constructor method
