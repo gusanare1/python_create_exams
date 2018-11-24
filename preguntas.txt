@@ -1,30 +1,38 @@
 P: La operacion  siguiente da como resultado:
 E: sen^2 60\degree+ 2\frac{tg 30\degree}{csc 60\degree} -4(tan 45\degree - sen 30\degree + sen 45\degree cos 45\degree)
 R: \frac{-9}{4}
+
 P: Un arbol de XX m de alto proyecta una sombra de 60 m de largo. Encontrar el angulo de elevacion aproximado del sol en ese momento.
 R: YY\degree
 DD:73
 Z:degrees(sympy.atan(XX/6))
+
 P: Encuentra el valor de las funciones trigonometricas de un angulo en posicion normal cuyo lado terminal pasa por el punto:
 E: P(4,3)
 R: cos(30\degree)
+
 P: Resuelve el siguiente triangulo rectangulo:
 E:4.png
 R: x=45\degree
+
 P: Un edificio proyecta una sombra de XX metros cuando el angulo de elevacion del Sol es la que se indica a continuacion. La altura del edificio sera: (graficar)
 E: 24\degree{11}'{23}''
 R: YY metros
 DD:106
 Z:sympy.tan(radians(24.1897))*XX
+
 P: El valor de la siguiente ecuacion es: (utilice la calculadora y desarrolle proceso)
 E: \frac{sin 45\degree \cdot tan 60\degree \cdot sec 30\degree }{tan 45\degree \cdot cot60\degree}
 R: \sqrt{6}
+
 P: En un triangulo rectangulo se conoce uno de sus angulos agudos B. Determina el valor del otro angulo agudo A. (Grafique)
 E: B=37\degree{45}'{45}''
-R:52\degree{14}'{15}''
+R: 52\degree{14}'{15}''
+
 P: Cuanto miden cada uno de los angulos interiores del siguiente triangulo
 E:9.png
 R: a=15\degree
+
 P: Relacione la expresion dada en radianes a grados sexagesimales:
 E: i.\frac{\pi}{2}rad \ ii.\frac{3\pi}{4}rad \ iii.\frac{2\pi}{3}
 R:i.90\degree ii.135\degree iii.120\degree
