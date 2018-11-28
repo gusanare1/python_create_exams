@@ -8,6 +8,8 @@ Instalar dependencias:
 Testeado con python3.6
 <br/>
 Uso:
+<b>Usado ecuaciones escritas en latex</b><br/>
+In a future... convertir latex a ecuaciones (ahora usando sympy pero no me convierte sin antes simplficarlo).
 <br/>
 P: Resuelva la siguiente fraccion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#09;&#09;<->Preguntas
 <br/>
