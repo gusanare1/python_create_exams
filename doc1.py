@@ -33,14 +33,14 @@ def crear_docx(numero=1):
 	paragraph_format.space_after = Pt(0)
 	font = style.font
 	font.name = 'Arial'
-	font.size = Pt(13)
+	font.size = Pt(12)
 	style.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 
 
 	document.add_paragraph().add_run('UNIDAD EDUCATIVA "LA ALBORADA"').bold=True
 	last_paragraph = document.paragraphs[-1] 
 	last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-	last_paragraph.style.font.size=Pt(18)
+	last_paragraph.style.font.size=Pt(16)
 
 
 	p=document.add_paragraph()
@@ -64,7 +64,7 @@ def crear_docx(numero=1):
 	table = document.add_table(rows=1, cols=5, style = 'Table Grid')
 	#table.style = 'TableGrid'
 	hdr_cells = table.rows[0].cells
-	hdr_cells[0].paragraphs[0].add_run().add_picture("qr.jpg",width=Inches(1.2))
+	hdr_cells[0].paragraphs[0].add_run().add_picture("qr.jpg",width=Inches(1.0))
 	hdr_cells[1].text = 'A'
 	hdr_cells[2].text = 'B'
 	hdr_cells[3].text = 'C'
@@ -75,7 +75,7 @@ def crear_docx(numero=1):
 		row_cells[0].text=str(i)
 
 	last_paragraph = document.paragraphs[-1] 
-	last_paragraph.style.font.size=Pt(13)
+	last_paragraph.style.font.size=Pt(12)
 	last_paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 
 	from lxml import etree
@@ -90,34 +90,48 @@ def crear_docx(numero=1):
 		if pregunta.ecuacion:
 			if ".jpg" in pregunta.ecuacion or ".png" in pregunta.ecuacion:
 				p=document.add_paragraph()
-				p.add_run().add_picture(pregunta.ecuacion,width=Inches(1.7))
+				p.add_run().add_picture(pregunta.ecuacion,width=Inches(1.5))
 				
 			else:
 				preg=sim.ecuacion_to_latex(pregunta.ecuacion)
-				
+				print("-"+str(preg)	)
 				if isinstance(preg, (np.ndarray, np.generic) ):
 					sim.crear_foto(preg,"preg.png",esMatriz=True)
 					tam=1.4
 				else:#no es matriz... ecuacion imagino...
+					
 					sim.crear_foto(preg,"preg.png")
-					if len(preg)>90:
-						tam=3.6
+					if len(preg)>110:
+						tam=3.5
+					elif len(preg)>90:
+						tam=2.2
 					elif len(preg)>70:
-						tam=2.5
+						tam=2.0
 						#print("1P")
 						#print(preg)
 					elif len(preg)>60:
 						#print("2")
 						#print(preg)
-						tam=2.1
+						tam=1.85
 					elif len(preg)>45:
-						tam=1.8
+						tam=1.7
 					elif len(preg)>30:
-						tam=1.5
+						tam=1.4
 					elif len(preg)>30:
 						tam=1.25
 					else:
 						tam=0.9
+				#BUSCAR EN EL ARCHIVO CUALES LINEAS ESTAN MUY GRANDES...
+				
+				#una vez el documento esta jecho, se procede a corregir los tamaños...
+				'''
+				st1 = "sen^2 60"
+				st2 = "sin 45\degree"
+				if st1 in pregunta.ecuacion :
+					print("**Muy pequeño"+str(tam)+"-"+str(len(pregunta.ecuacion)))
+				if st2 in pregunta.ecuacion :
+					print("**Normal -sin(45*cos....)"+str(tam)+"-"+str(len(pregunta.ecuacion)))
+				'''
 				p=document.add_paragraph()
 				p.add_run().add_picture("preg.png",width=Inches(tam))
 				#print("Pr:"+preg+repr(tam))
@@ -132,7 +146,7 @@ def crear_docx(numero=1):
 				res=sim.ecuacion_to_latex(resp)
 				p=document.add_paragraph(chr(sol)+") ")
 				if len(res)>110:
-						tam=2.25
+						tam=2.15
 						#print("r1")
 						#print(res)
 				elif len(res)>100:
@@ -163,12 +177,13 @@ def crear_docx(numero=1):
 						tam=0.65
 						#print("r7")
 						#print(res)
+				
 				if isinstance(res, (np.ndarray, np.generic) ):
 					sim.crear_foto(res,"respM.png",tam=120,esMatriz=True)
 					#print("Matrix")
 					p.add_run().add_picture("respM.png",width=Inches(tam))
 				else:
-					sim.crear_foto(res,"resp.png",tam=100)
+					sim.crear_foto(res,"resp.png",tam=110)
 					p.add_run().add_picture("resp.png",width=Inches(tam))
 				
 				sol=sol+1
@@ -178,7 +193,7 @@ def crear_docx(numero=1):
 			#print("NEXT PAGE")
 		else:
 			if not i==numero_preguntas+1:
-				for j in range(0,4):
+				for j in range(0,3):
 					#print("*Enter*")
 					p = document.add_paragraph()
 					run = p.add_run()
