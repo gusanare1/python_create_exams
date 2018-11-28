@@ -1,5 +1,5 @@
 # python_create_exams
-Funcion que crea un examen en word con un template(txt) usando matlabplot docx y sympy
+Programa que crea un examen en word con un template(txt) usando matlabplot docx y sympy (diseñado para matematicas). 
 
 Instalar dependencias:
 <br/>
@@ -9,7 +9,7 @@ Testeado con python3.6
 <br/>
 Uso:
 <b>Usado ecuaciones escritas en latex</b><br/>
-In a future... convertir latex a ecuaciones (ahora usando sympy pero no me convierte sin antes simplficarlo).
+In a future... convertir latex a ecuaciones (antes usado sympy pero no me convierte a latex sin antes resolverlo).
 <br/>
 P: Resuelva la siguiente fraccion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#09;&#09;<->Preguntas
 <br/>
