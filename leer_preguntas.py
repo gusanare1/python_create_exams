@@ -73,24 +73,22 @@ def crear_preguntas():
 			#print(pr.respuesta)
 		#print(pr)
 		pr.respuestas.append(pr.respuesta) #pongo la respuesta en cada pregunta
-		inicio = 1
-		delta = 3
 		
 		while len(pr.respuestas)!=4:
-			pr.respuestas=list(set(pr.respuestas))
 			flag = False
 			i=0
 			while not flag:
 				i= random.randint(1,len(pr.respuesta)-1)
 				if pr.respuesta[i].isdigit():
 					#print("DIG"+str( pr.respuesta[i]))
-					dg=random.randint(inicio,inicio+delta)
-					dig = int(pr.respuesta[i])+dg
+					dig=random.randint(5,50)
+					if dig>9:
+						dig=int(str(dig)[0])+int(str(dig)[1])
+						
 					flag=True
-					inicio=inicio+delta+1
-			resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+random.randint(0,1):]
+			resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+1:]
 			pr.respuestas.append(resp)
-		
+			pr.respuestas=list(set(pr.respuestas))
 		'''
 		for j in range(0,3):#genero 3 respuestas (esocojo la respuesta y le sumo un aleatorio)
 			pa=False
