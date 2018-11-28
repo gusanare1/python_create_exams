@@ -30,13 +30,14 @@ def fetch():
 		doc1.crear_docx(i)
 		archivo = dir_path+"\\exam"+str(i)+".docx" 
 		print("*Imprimiendo "+archivo)
+		printWordDocument(archivo)
 		
 		for line in fileinput.input("preguntas.txt", inplace=1):
-			if "DD:" in line:
-				sE=line[:3]+str(int(line[3:])+random.randint(1,20))+"\n"
+			if "DD:" in line:#
+				sE=line[:3]+str(int(line[3:])+random.randint(2,5))+"\n"
 				line = line.replace(line,sE)
 			sys.stdout.write(line)
-		printWordDocument(archivo)
+		
 		
 class Quitter(Frame):                          # subclass our GUI
     def __init__(self, parent=None):           # constructor method
