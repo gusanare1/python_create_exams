@@ -82,9 +82,14 @@ def crear_preguntas():
 				if pr.respuesta[i].isdigit():
 					#print("DIG"+str( pr.respuesta[i]))
 					dig=random.randint(5,50)
-					if dig>9:
+					if 0==random.randint(0,1):
+						if "-" in pr.respuesta:
+							pr.respuesta.replace("-","+")
+						elif "+" in pr.respuesta:
+							pr.respuesta.replace("+","-")
+					while dig>9:
 						dig=int(str(dig)[0])+int(str(dig)[1])
-						
+					
 					flag=True
 			resp=pr.respuesta[0:i]+str(dig)+pr.respuesta[i+1:]
 			pr.respuestas.append(resp)
