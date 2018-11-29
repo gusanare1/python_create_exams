@@ -12,3 +12,5 @@ array2latex
 pandas
 requests
 Image
+imutils
+scipy
